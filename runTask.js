@@ -5,6 +5,9 @@ var roleUpgrader = require('role.upgrader');
 var roleAttacker = require('role.attacker');
 var roleClaimer = require('role.claimer');
 var roleTransferer = require('role.transferer');
+var roleFarbuilder = require('role.farbuilder');
+var roleFiller = require('role.filler');
+var roleHealer = require('role.healer');
 
 var runTask = {
 	run: function(creep) {
@@ -29,6 +32,16 @@ var runTask = {
 		else if (creep.memory.role == 'transferer') {
 			roleTransferer.run(creep)
 		}
+		else if (creep.memory.role == 'farbuilder') {
+			roleFarbuilder.run(creep)
+		}
+		else if (creep.memory.role == 'filler') {
+			roleFiller.run(creep)
+		}
+		else if (creep.memory.role == 'healer') {
+			roleHealer.run(creep)
+		}
+
 
 	}
 }

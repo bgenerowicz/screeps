@@ -1,18 +1,40 @@
 var detLocation = require('detLocation');
 
 var spawnCreep = {
-    run: function(creeps,role) {
+    run: function(creeps,role,pickmap) {
+        //Check which map to make
+        if (pickmap == '1') {
+            var pickspawn = 'Staz1';
+        }
+        else if (pickmap == '2') {
+            var pickspawn = 'Staz2';
+        }
+        else if (pickmap == '3') {
+            var pickspawn = 'Staz3';
+        }
+        // console.log(pickspawn)
         //Max cost of each creep
         var mFarmer = 750;
         var mWorker = 600;
-        var mAttacker = 1700;
+        var mAttacker = 1500;
         var mUpgrader = 1200;
         var mTransferer = 800;
+        var mClaimer = 650;
+        var mFarbuilder = 1000;
+        var mFiller = 500;
+        var mHealer = 650;
         
         //Check energy available to spawn
         var creep = [];
-        var screeps = _.filter(Game.creeps, (creep));
+        var screeps = _.filter(Game.creeps, (creep) => (creep.memory.role == 'farmer') && (creep.memory.cMap == pickmap));
         var energyAvail = screeps[0].room.energyAvailable;
+        
+        // console.log('Available:',energyAvail)
+        
+        
+        // var screeps = _.filter(Game.creeps, (creep));
+        // var energyAvail = screeps[0].room.energyAvailable;
+        // var energyAvail = 600;
         
         // Determine location at which creep should work
         // Dont make more than max threshdold
@@ -40,10 +62,29 @@ var spawnCreep = {
         else if (role == 'attacker') {
 		    //Dont make more than max threshdold
 		    var spendable = Math.min(energyAvail,mAttacker);
+		  //  var spendable = mAttacker;
+		  
         }
         else if (role == 'transferer') {
 		    //Dont make more than max threshdold
 		    var spendable = Math.min(energyAvail,mTransferer);
+        }
+        else if (role == 'claimer') {
+            //Dont make more than max threshdold
+            var spendable = Math.min(energyAvail,mClaimer);
+        }
+        else if (role == 'farbuilder') {
+            //Dont make more than max threshdold
+            var spendable = Math.min(energyAvail,mFarbuilder);
+        }
+        else if (role == 'filler') {
+            var location = detLocation.run(creeps);
+            //Dont make more than max threshdold
+            var spendable = Math.min(energyAvail,mFiller);
+        }
+        else if (role == 'healer') {
+            //Dont make more than max threshdold
+            var spendable = Math.min(energyAvail,mHealer);
         }
   
         
@@ -54,47 +95,61 @@ var spawnCreep = {
         var cAttack = 150;
         var cClaim = 600;
         var cTough = 10;
+        var cHeal = 250;
+
+        var rWork = 0;
+        var rMove = 0;
+        var rCarry = 0;
+        var rAttack = 0;
+        var rClaim = 0;
+        var rTough = 0;
+        var rHeal = 0;
         
         //Give Ratio
         if (role == 'farmer') {
             var rWork = 2;
             var rMove = 1;
-            var rCarry = 0;
-            var rAttack = 0;
-            var rClaim = 0;
-            var rTough = 0;
         }
         else if (role == 'worker') {
-            var rWork = 0;
             var rMove = 1;
             var rCarry = 2;
-            var rAttack = 0;
-            var rClaim = 0;
-            var rTough = 0;
         }
         else if (role == 'upgrader' || role == 'builder') {
             var rWork = 1;
             var rMove = 1;
             var rCarry = 1;
-            var rAttack = 0;
-            var rClaim = 0;
-            var rTough = 0;
         }
         else if (role == 'attacker') {
-            var rWork = 0;
-            var rMove = 3;
-            var rCarry = 0;
+            var rMove = 1;
             var rAttack = 1;
-            var rClaim = 0;
-            var rTough = 5;
+            var rTough = 1;
         }
         else if (role == 'transferer') {
-            var rWork = 0;
             var rMove = 1;
             var rCarry = 2;
-            var rAttack = 0;
-            var rClaim = 0;
-            var rTough = 0;
+        }
+        else if (role == 'claimer') {
+            var rMove = 1;
+            var rClaim = 1;
+        }
+        else if (role == 'farbuilder') {
+            var rWork = 1;
+            var rMove = 2;
+            var rCarry = 1;
+        }
+        else if (role == 'filler') {
+            var rWork = 1;
+            var rMove = 2;
+            var rCarry = 1;
+        }
+        else if (role == 'filler') {
+            var rWork = 1;
+            var rMove = 2;
+            var rCarry = 1;
+        }
+        else if (role == 'healer') {
+            var rHeal = 1;
+            var rMove = 1;
         }
         
         //Properties stored in array
@@ -104,16 +159,16 @@ var spawnCreep = {
         var pAttack = [];
         var pClaim = [];
         var pTough = [];
+        var pHeal = [];
         
         //Cost of one section
-        var cSection = cWork*rWork+cMove*rMove+cCarry*rCarry+cAttack*rAttack+cClaim*rClaim+cTough*rTough;
+        var cSection = cWork*rWork+cMove*rMove+cCarry*rCarry+cAttack*rAttack+cClaim*rClaim+cTough*rTough+cHeal*rHeal;
         
         //# of Sections that will be made
         var nSections = Math.floor(spendable/cSection);
         
         //Total cost of creep
         var tCost = cSection*nSections;
-        
         
         //Create arrays of properties
         for (i=0;i<nSections;i++) {
@@ -135,20 +190,22 @@ var spawnCreep = {
             for (var j=0;j<rTough;j++) {
                 pTough.push('tough');
             }
+            for (var j=0;j<rHeal;j++) {
+                pHeal.push('heal');
+            }
         }
         
         //Combine all arrays in order [TOUGH,MOVE,WORK,CARRY,ATTACK,CLAIM]
-        var props = pTough.concat(pMove,pWork,pCarry,pAttack,pClaim);
+        var props = pTough.concat(pMove,pWork,pCarry,pAttack,pClaim,pHeal);
         
-        // console.log(cSection)
-        console.log()
+
         console.log()
         console.log('Creating:',role);
+        console.log('Map:',pickmap)
         console.log('At Location:',location);
         console.log('Cost:',tCost);
-        Game.spawns['Staz1'].createCreep(props, undefined, {role: role,position: location,cost:tCost})
-        console.log()
-        console.log()
+        Game.spawns[pickspawn].createCreep(props, undefined, {role: role,position: location,cost:tCost,cMap:pickmap})
+
 
     }
 }

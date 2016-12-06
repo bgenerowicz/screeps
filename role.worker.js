@@ -10,12 +10,12 @@ var roleWorker = {
 
         // // Find farmers so you know which to go to
         if (creep.memory.position == '1') {
-            var x = 10;
-            var y = 37;
+            var x = 8;
+            var y = 13;
         }
         else {
-            var x = 8;
-            var y = 8;
+            var x = 18;
+            var y = 10;
         }
         
         //Store dropped energy for print

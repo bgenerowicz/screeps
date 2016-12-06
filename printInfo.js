@@ -14,9 +14,10 @@ var printInfo = {
         var extractors = _.filter(Game.creeps, (creep) => creep.memory.role == 'extractor');
         var attackers = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker');
         var transferers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transferer');
+        var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
 
         //Print # of each creep
-        console.log('Farmers:',farmers.length,'Workers:', workers.length, 'Upgraders:',upgraders.length,'Builders:',builders.length,'Attackers:',attackers.length);
+        // console.log('Farmers:',farmers.length,'Workers:', workers.length, 'Upgraders:',upgraders.length,'Builders:',builders.length,'Attackers:',attackers.length);
 
         //Print Available energy & Stored energy & Dropped energy
         var energyAvail = farmers[0].room.energyAvailable;
@@ -49,22 +50,25 @@ var printInfo = {
         
 		//Print creep role/type/timetolive
 		for (i=0;i<farmers.length;i++) {
-			console.log('Role:',farmers[i].memory.role,'     Loc:',farmers[i].memory.position, '  Cost:',farmers[i].memory.cost,'  TTL:',farmers[i].ticksToLive);
+			console.log('Role:',farmers[i].memory.role,'     Loc:',farmers[i].memory.position, '  Cost:',farmers[i].memory.cost,'  TTL:',farmers[i].ticksToLive, '  Map:',farmers[i].memory.cMap);
 		}
 		for (i=0;i<workers.length;i++) {
-			console.log('Role:',workers[i].memory.role,'     Loc:',workers[i].memory.position,'  Cost:',workers[i].memory.cost,'  TTL:',workers[i].ticksToLive);
+			console.log('Role:',workers[i].memory.role,'     Loc:',workers[i].memory.position,'  Cost:',workers[i].memory.cost,'  TTL:',workers[i].ticksToLive, '  Map:',workers[i].memory.cMap);
 		}
 		for (i=0;i<upgraders.length;i++) {
-			console.log('Role:',upgraders[i].memory.role,'   Loc: N','  Cost:',upgraders[i].memory.cost,'  TTL:',upgraders[i].ticksToLive);
+			console.log('Role:',upgraders[i].memory.role,'   Loc: N','  Cost:',upgraders[i].memory.cost,'  TTL:',upgraders[i].ticksToLive, '  Map:',upgraders[i].memory.cMap);
 		}
 		for (i=0;i<builders.length;i++) {
-			console.log('Role:',builders[i].memory.role,'    Loc: N','  Cost:',builders[i].memory.cost,'  TTL:',builders[i].ticksToLive);
+			console.log('Role:',builders[i].memory.role,'    Loc: N','  Cost:',builders[i].memory.cost,'  TTL:',builders[i].ticksToLive, '  Map:',builders[i].memory.cMap);
 		}
         for (i=0;i<attackers.length;i++) {
-            console.log('Role:',attackers[i].memory.role,'    Loc: N','  Cost:',attackers[i].memory.cost,'  TTL:',attackers[i].ticksToLive);
+            console.log('Role:',attackers[i].memory.role,'   Loc: N','  Cost:',attackers[i].memory.cost,'  TTL:',attackers[i].ticksToLive, '  Map:',attackers[i].memory.cMap);
         }
         for (i=0;i<transferers.length;i++) {
-            console.log('Role:',transferers[i].memory.role,' Loc: N','  Cost:',transferers[i].memory.cost,'  TTL:',transferers[i].ticksToLive);
+            console.log('Role:',transferers[i].memory.role,' Loc: N','  Cost:',transferers[i].memory.cost,'  TTL:',transferers[i].ticksToLive, '  Map:',transferers[i].memory.cMap);
+        }
+        for (i=0;i<claimers.length;i++) {
+            console.log('Role:',claimers[i].memory.role,'    Loc: N','  Cost:',claimers[i].memory.cost,'  TTL:',claimers[i].ticksToLive, '  Map:',claimers[i].memory.cMap);
         }
 
 	}

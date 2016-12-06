@@ -7,10 +7,12 @@ var printInfo = require('printInfo');
 module.exports.loop = function () {
     //Check whether to spawn creeps
     // spawnCreep.run();
-    checkSpawn.run();
+    checkSpawn.run('1');
+    checkSpawn.run('2');
+    checkSpawn.run('3');
 
     //Run towers
-    // runTower.run();
+    runTower.run();
 
     //Print info
     // printInfo.run();

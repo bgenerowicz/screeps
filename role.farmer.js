@@ -4,6 +4,7 @@ var roleFarmer = {
         if ((creep.ticksToLive < 5) && (creep.carry.energy == 0)) {
             creep.suicide();
         }
+
         //Look for sources in its room
         var sources = creep.room.find(FIND_SOURCES);
         //Check which position it is assigned to

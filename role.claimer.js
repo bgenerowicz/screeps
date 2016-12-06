@@ -1,6 +1,7 @@
 var roleClaimer = {
 	run: function(creep) {
-		var claim_room = 'E68S8';
+		var claim_room = 'E48S77';
+		var flag = Game.flags.Flag2;
 
 		if (creep.room.name == claim_room) {
 			creep.memory.task = 'claim';
@@ -16,7 +17,7 @@ var roleClaimer = {
 				}
 				break;
 			case 'search':
-				creep.moveTo(Game.flags.Flag1);
+				creep.moveTo(flag);
 				break;
 		}
 	}

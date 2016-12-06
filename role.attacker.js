@@ -3,17 +3,20 @@ var roleAttacker = {
 // 		var hostiles = creep.room.find(FIND_HOSTILE_CREEPS);
 		var hostiles = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 		var hostile_spawn = creep.room.find(FIND_HOSTILE_SPAWNS);
-        var attack_room = 'E68S8';
+        // var attack_room = 'E47S77'; //My second room
 
-        // var attack_room = 'E67S7';
+        var attack_room = 'E48S77'; //The 3rd room i want
+        var flag = Game.flags.Flag2;
 
 		if (creep.room.name == attack_room) {
 		    if (hostiles) {
 		      //  creep.memory.task = 'a_spawn';
 		        creep.memory.task = 'attack';
+		      //  creep.moveTo(flag)
 		    }
 		    else {
-		        creep.memory.task = 'a_spawn';
+		      //  creep.memory.task = 'a_spawn';
+		      creep.moveTo(flag)
 		    }
 		}
 		else {
@@ -28,7 +31,7 @@ var roleAttacker = {
 				}
 				break;
 			case 'search':
-				creep.moveTo(Game.flags.Flag1);
+				creep.moveTo(flag);
 				break;
             case 'a_spawn':
                 if (creep.attack(hostile_spawn[0]) == ERR_NOT_IN_RANGE) {
