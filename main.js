@@ -2,7 +2,6 @@ var runTask = require('runTask');
 var checkSpawn = require('checkSpawn');
 var runTower = require('runTower');
 var checkLife = require('checkLife');
-var printInfo = require('printInfo');
 
 module.exports.loop = function () {
     //Check whether to spawn creeps
@@ -12,10 +11,9 @@ module.exports.loop = function () {
     checkSpawn.run('3');
 
     //Run towers
-    runTower.run();
-
-    //Print info
-    // printInfo.run();
+    runTower.run('1');
+    runTower.run('2');
+    runTower.run('3');
 
 
     for(var name in Game.creeps) {

@@ -25,9 +25,10 @@ var spawnCreep = {
         var mHealer = 650;
         
         //Check energy available to spawn
-        var creep = [];
-        var screeps = _.filter(Game.creeps, (creep) => (creep.memory.role == 'farmer') && (creep.memory.cMap == pickmap));
+        // var screeps = _.filter(Game.creeps, function(creep){ (creep.memory.role == 'farmer') && (creep.memory.cMap == pickmap)});
+        var screeps = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'farmer' && creep.memory.cMap == pickmap});
         var energyAvail = screeps[0].room.energyAvailable;
+        
         
         
         // Determine location at which creep should work

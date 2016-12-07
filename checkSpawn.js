@@ -2,6 +2,7 @@ var spawnCreep = require('spawnCreep');
 
 var checkSpawn = {
     run: function(checkspawn) {
+    	
         if (checkspawn == '1') {
             var spawn = 'Staz1';
         }
@@ -47,18 +48,21 @@ var checkSpawn = {
     
         //Check which creeps are already present
         var creep = [];
-        var screeps = _.filter(Game.creeps, (creep) => (creep.memory.cMap == checkspawn));
-        var farmers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'farmer') && (creep.memory.cMap == checkspawn));
-        var upgraders = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader') && (creep.memory.cMap == checkspawn));
-        var workers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'worker') && (creep.memory.cMap == checkspawn));
-        var builders = _.filter(Game.creeps, (creep) => (creep.memory.role == 'builder') && (creep.memory.cMap == checkspawn));
-        var extractors = _.filter(Game.creeps, (creep) => (creep.memory.role == 'extractor') && (creep.memory.cMap == checkspawn));
-        var attackers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'attacker') && (creep.memory.cMap == checkspawn));
-        var healers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'healer') && (creep.memory.cMap == checkspawn));
-        var transferers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'transferer') && (creep.memory.cMap == checkspawn));
-        var claimers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'claimer') && (creep.memory.cMap == checkspawn));
-        var fillers = _.filter(Game.creeps, (creep) => (creep.memory.role == 'filler') && (creep.memory.cMap == checkspawn));
-        var farbuilders = _.filter(Game.creeps, (creep) => (creep.memory.role == 'farbuilder'));
+        var screeps = _.filter(Game.creeps, function(creep){ return creep.memory.cMap == checkspawn});
+        var farmers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'farmer' && creep.memory.cMap == checkspawn});
+        var upgraders = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'upgrader' && creep.memory.cMap == checkspawn});
+        var workers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'worker' && creep.memory.cMap == checkspawn});
+        var builders = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'builder' && creep.memory.cMap == checkspawn});
+        var extractors = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'extractor' && creep.memory.cMap == checkspawn});
+        var attackers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'attacker' && creep.memory.cMap == checkspawn});
+        var healers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'healer' && creep.memory.cMap == checkspawn});
+        var transferers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'transferer' && creep.memory.cMap == checkspawn});
+        var claimers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'claimer' && creep.memory.cMap == checkspawn});
+        var fillers = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'filler' && creep.memory.cMap == checkspawn});
+        var farbuilders =_.filter(Game.creeps, function(creep){ return creep.memory.role == 'farbuilder' && creep.memory.cMap == checkspawn});
+        
+ 
+        
         
         //-----------------------------------------------
         //Print usefull information

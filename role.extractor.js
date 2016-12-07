@@ -12,7 +12,6 @@ var roleExtractor = {
 		if(_.sum(creep.carry) == 0) {
 			creep.memory.task = 'extract';
 		}
-		// if (_.sum(creep.carry) == creep.carryCapacity) {
 		if (_.sum(creep.carry) == creep.carryCapacity) {
 			creep.memory.task = 'store';
 		}

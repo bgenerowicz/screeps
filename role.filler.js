@@ -18,10 +18,12 @@ var roleFiller = {
         // var repair_sites = creep.room.find(FIND_STRUCTURES, {filter: (structure) => { return (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax) || (structure.structureType === STRUCTURE_RAMPART && structure.hits < 1000) || (structure.structureType === STRUCTURE_WALL && structure.hits < 1000) || (structure.structureType === STRUCTURE_SPAWN && structure.hits < structure.hitsMax)}});
         var repair_sites = 0;
         //storages in room
-        var storage = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return ((structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
-                        || structure.structureType == STRUCTURE_TOWER) && structure.energy < 0.9*structure.energyCapacity)}});
+                        
+        
+        var storage = creep.room.find(FIND_STRUCTURES,{filter: function(structure){return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
+                        || structure.structureType == STRUCTURE_TOWER) && structure.energy < 0.9*structure.energyCapacity}});
+        
+
 
         //Give coords of pickup
         if (creep.memory.cMap == '2') {
