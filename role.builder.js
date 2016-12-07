@@ -3,7 +3,6 @@ var roleBuilder = {
     run: function(creep) {        
         // Construction sites
         var con_sites = creep.room.find(FIND_CONSTRUCTION_SITES);
-        // console.log('Construction Sites:',con_sites.length);
 
 
         //Give appropriate task

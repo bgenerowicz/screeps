@@ -21,7 +21,7 @@ var spawnCreep = {
         var mTransferer = 800;
         var mClaimer = 650;
         var mFarbuilder = 1000;
-        var mFiller = 500;
+        var mFiller = 1000;
         var mHealer = 650;
         
         //Check energy available to spawn
@@ -29,12 +29,6 @@ var spawnCreep = {
         var screeps = _.filter(Game.creeps, (creep) => (creep.memory.role == 'farmer') && (creep.memory.cMap == pickmap));
         var energyAvail = screeps[0].room.energyAvailable;
         
-        // console.log('Available:',energyAvail)
-        
-        
-        // var screeps = _.filter(Game.creeps, (creep));
-        // var energyAvail = screeps[0].room.energyAvailable;
-        // var energyAvail = 600;
         
         // Determine location at which creep should work
         // Dont make more than max threshdold
@@ -46,13 +40,7 @@ var spawnCreep = {
         else if (role == 'worker') {
 		    var location = detLocation.run(creeps);
 		    //Since location 0 is further, make a better one
-		    if (location == '0') {
-		        mWorker += 300;
-		        var spendable = Math.min(energyAvail,mWorker);
-		    }
-		    else {
-		        var spendable = Math.min(energyAvail,mWorker);
-		    }
+		    var spendable = Math.min(energyAvail,mWorker);
         }
         else if (role == 'upgrader' || role == 'builder') {
 		    var location = 'n';
@@ -60,20 +48,24 @@ var spawnCreep = {
 		    var spendable = Math.min(energyAvail,mUpgrader);
         }
         else if (role == 'attacker') {
+            var location = 'n';
 		    //Dont make more than max threshdold
 		    var spendable = Math.min(energyAvail,mAttacker);
 		  //  var spendable = mAttacker;
 		  
         }
         else if (role == 'transferer') {
+            var location = 'n';
 		    //Dont make more than max threshdold
 		    var spendable = Math.min(energyAvail,mTransferer);
         }
         else if (role == 'claimer') {
+            var location = 'n';
             //Dont make more than max threshdold
             var spendable = Math.min(energyAvail,mClaimer);
         }
         else if (role == 'farbuilder') {
+            var location = 'n';
             //Dont make more than max threshdold
             var spendable = Math.min(energyAvail,mFarbuilder);
         }
@@ -83,6 +75,7 @@ var spawnCreep = {
             var spendable = Math.min(energyAvail,mFiller);
         }
         else if (role == 'healer') {
+            var location = 'n';
             //Dont make more than max threshdold
             var spendable = Math.min(energyAvail,mHealer);
         }
@@ -203,7 +196,7 @@ var spawnCreep = {
         console.log('Creating:',role);
         console.log('Map:',pickmap)
         console.log('At Location:',location);
-        console.log('Cost:',tCost);
+        console.log('Available:',spendable);
         Game.spawns[pickspawn].createCreep(props, undefined, {role: role,position: location,cost:tCost,cMap:pickmap})
 
 

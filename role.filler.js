@@ -1,5 +1,7 @@
 var roleFiller = {
     run: function(creep) {
+        //repair sites set to 0, towers should do it all
+        
         //Check to see if creeps should live
         if ((creep.ticksToLive < 50) && (creep.carry.energy == 0)) {
             creep.suicide();
@@ -13,7 +15,8 @@ var roleFiller = {
         var target = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
         // Construction sites
         var con_sites = creep.room.find(FIND_CONSTRUCTION_SITES);
-        var repair_sites = creep.room.find(FIND_STRUCTURES, {filter: (structure) => { return (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax) || (structure.structureType === STRUCTURE_RAMPART && structure.hits < 1000) || (structure.structureType === STRUCTURE_WALL && structure.hits < 1000) || (structure.structureType === STRUCTURE_SPAWN && structure.hits < structure.hitsMax)}});
+        // var repair_sites = creep.room.find(FIND_STRUCTURES, {filter: (structure) => { return (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax) || (structure.structureType === STRUCTURE_RAMPART && structure.hits < 1000) || (structure.structureType === STRUCTURE_WALL && structure.hits < 1000) || (structure.structureType === STRUCTURE_SPAWN && structure.hits < structure.hitsMax)}});
+        var repair_sites = 0;
         //storages in room
         var storage = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
@@ -38,7 +41,7 @@ var roleFiller = {
             }
             else {
                 x = 11;
-                y = 17;
+                y = 16;
             }
         }
 

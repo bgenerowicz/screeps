@@ -1,9 +1,5 @@
 var roleWorker = {
     run: function(creep) {
-        // var storage = creep.room.find(FIND_STRUCTURES, {
-        //             filter: (structure) => {
-        //                 return ((structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
-        //                 || structure.structureType == STRUCTURE_TOWER) && structure.energy < 0.9*structure.energyCapacity)}});
 
         // Find closest dropped energy
         var target = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
@@ -17,16 +13,7 @@ var roleWorker = {
             var x = 18;
             var y = 10;
         }
-        
-        //Store dropped energy for print
-        var dropped_energy = creep.room.find(FIND_DROPPED_ENERGY);
-        var drop = [];
-        for (i=0; i< dropped_energy.length; i++) {
-            drop[i] = dropped_energy[i]['energy'];
-        }
-        
-        // console.log('Dropped Energy:', drop)
-        
+    
         
         //Give appropriate task
         if (creep.carry.energy == 0) {
