@@ -11,9 +11,11 @@ module.exports.loop = function () {
     checkSpawn.run('3');
 
     //Run towers
-    runTower.run('1');
-    runTower.run('2');
-    runTower.run('3');
+    runTower.run();
+    // runTower.run('2');
+    // runTower.run('3');
+    // runTower.run('4');
+    
 
 
     for(var name in Game.creeps) {
