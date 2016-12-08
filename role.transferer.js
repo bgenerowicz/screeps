@@ -1,9 +1,17 @@
 var roleTransferer = {
 	run: function(creep) {
-		var storage = creep.room.find(FIND_STRUCTURES,{filter: function(structure){return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
+// 		var storage = creep.room.find(FIND_STRUCTURES,{filter: function(structure){return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
+//                         || structure.structureType == STRUCTURE_TOWER) && structure.energy < 0.9*structure.energyCapacity}});
+
+        var storage = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: function(structure){return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN
                         || structure.structureType == STRUCTURE_TOWER) && structure.energy < 0.9*structure.energyCapacity}});
-
-
+        // console.log(storaget)
+        // if (storaget) {
+        //     console.log('tet')
+        // }
+        // console.log('-')
+        
+        // console.log(storagetest)
 
 		//Give appropriate task
         if (creep.carry.energy == 0) {
@@ -20,9 +28,9 @@ var roleTransferer = {
                 }
                 break;
             case 'return':
-                if (storage.length >0) {
-                    if(creep.transfer(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(storage[0]);
+                if (storage) {
+                    if(creep.transfer(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(storage);
                     }
                 }
                 else {

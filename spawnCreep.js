@@ -24,9 +24,11 @@ var spawnCreep = {
         var mFiller = 1000;
         var mHealer = 650;
         
+        
+        
         //Check energy available to spawn
         // var screeps = _.filter(Game.creeps, function(creep){ (creep.memory.role == 'farmer') && (creep.memory.cMap == pickmap)});
-        var screeps = _.filter(Game.creeps, function(creep){ return creep.memory.role == 'farmer' && creep.memory.cMap == pickmap});
+        var screeps = _.filter(Game.creeps, function(creep){ return ((creep.memory.role == 'worker') && (creep.memory.cMap == pickmap))});
         var energyAvail = screeps[0].room.energyAvailable;
         
         
@@ -40,8 +42,14 @@ var spawnCreep = {
         }
         else if (role == 'worker') {
 		    var location = detLocation.run(creeps);
-		    //Since location 0 is further, make a better one
-		    var spendable = Math.min(energyAvail,mWorker);
+		    
+		    //Custom Max for certain maps
+		    //2nd map at location 1 needs better worker
+            if ((pickmap == '2') && (location == '1')) {
+                var mWorker = 1000;
+            }
+            
+            var spendable = Math.min(energyAvail,mWorker);
         }
         else if (role == 'upgrader' || role == 'builder') {
 		    var location = 'n';
@@ -114,9 +122,9 @@ var spawnCreep = {
             var rCarry = 1;
         }
         else if (role == 'attacker') {
-            var rMove = 1;
+            var rMove = 6;
             var rAttack = 1;
-            var rTough = 1;
+            var rTough = 11;
         }
         else if (role == 'transferer') {
             var rMove = 1;
@@ -193,12 +201,14 @@ var spawnCreep = {
         var props = pTough.concat(pMove,pWork,pCarry,pAttack,pClaim,pHeal);
         
 
-        console.log()
-        console.log('Creating:',role);
-        console.log('Map:',pickmap)
-        console.log('At Location:',location);
-        console.log('Available:',spendable);
-        Game.spawns[pickspawn].createCreep(props, undefined, {role: role,position: location,cost:tCost,cMap:pickmap})
+        
+        if (Game.spawns[pickspawn].createCreep(props, undefined, {role: role,position: location,cost:tCost,cMap:pickmap}) != ERR_BUSY) {
+            console.log()
+            console.log('Creating:',role);
+            console.log('Map:',pickmap)
+            console.log('At Location:',location);
+            console.log('Available:',spendable);
+        }
 
 
     }

@@ -13,7 +13,7 @@ var runTower = {
 	    }
 	    
 	    //Build walls/rampart till
-	    var strength = 10000;
+	    var strength = 50000;
 	    // Find repair sites
 	                                    
 	    var repair_sites = tower.room.find(FIND_STRUCTURES, {filter: function(structure) { return (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax) 

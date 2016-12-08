@@ -30,11 +30,8 @@ var checkSpawn = {
         if (checkspawn == '1') {
             var num_farmers = 2;
             var num_workers = 2;
-            var num_builders = 2;
-            var num_transferers = 1;
-            var num_farbuilders = 0;
-            var num_attackers = 0;
-            var num_healers = 0;
+            var num_builders = 3;
+            var num_transferers = 2;
         }
         else if (checkspawn == '2') {
             // var num_farmers = 2;
@@ -42,7 +39,7 @@ var checkSpawn = {
             var num_farmers = 2;
             var num_workers = 2;
             var num_builders = 2;
-            var num_transferers = 1;
+            var num_transferers = 2;
         }
         else if (checkspawn == '3') {
             // var num_farmers = 2;
@@ -50,7 +47,7 @@ var checkSpawn = {
             var num_farmers = 2;
             var num_workers = 2;
             var num_builders = 2;
-            var num_transferers = 1;
+            var num_transferers = 2;
         }
     
     
@@ -74,23 +71,23 @@ var checkSpawn = {
         
         //-----------------------------------------------
         //Print usefull information
-        console.log();
-        console.log('Map:',checkspawn);
-        console.log('Tcreeps:',screeps.length,'Farmers:',farmers.length,'Workers:',workers.length,'Attackers:',attackers.length,'Transferers:',transferers.length,'Fillers:',fillers.length)
-        for (i=0;i<screeps.length;i++) {
-            console.log('Role:',screeps[i].memory.role,'       Loc:',screeps[i].memory.position,'     Cost:',screeps[i].memory.cost,'     TTL:',screeps[i].ticksToLive, '     Map:',screeps[i].memory.cMap);
-        }
+        // console.log();
+        // console.log('Map:',checkspawn);
+        // console.log('Tcreeps:',screeps.length,'Farmers:',farmers.length,'Workers:',workers.length,'Builders:',builders.length,'Attackers:',attackers.length,'Transferers:',transferers.length,'Fillers:',fillers.length)
+        // for (i=0;i<screeps.length;i++) {
+        //     console.log('Role:',screeps[i].memory.role,'       Loc:',screeps[i].memory.position,'     Cost:',screeps[i].memory.cost,'     TTL:',screeps[i].ticksToLive, '     Map:',screeps[i].memory.cMap);
+        // }
         
         //Print Available energy & Stored energy & Dropped energy
-        var energyAvail = screeps[0].room.energyAvailable;
-        var storage_energy = screeps[0].room.storage.store[RESOURCE_ENERGY];
-        //Store dropped energy for print
-        var dropped_energy = screeps[0].room.find(FIND_DROPPED_ENERGY);
-        var drop = [];
-        for (i=0; i< dropped_energy.length; i++) {
-            drop[i] = dropped_energy[i]['energy'];
-        }
-		console.log('Energy Available:', energyAvail,'Energy Storage:',storage_energy,'Dropped Energy:',drop);
+//         var energyAvail = screeps[0].room.energyAvailable;
+//         var storage_energy = screeps[0].room.storage.store[RESOURCE_ENERGY];
+//         //Store dropped energy for print
+//         var dropped_energy = screeps[0].room.find(FIND_DROPPED_ENERGY);
+//         var drop = [];
+//         for (i=0; i< dropped_energy.length; i++) {
+//             drop[i] = dropped_energy[i]['energy'];
+//         }
+// 		console.log('Energy Available:', energyAvail,'Energy Storage:',storage_energy,'Dropped Energy:',drop);
         //-----------------------------------------------
         
         //If no creeps, make ititial one
