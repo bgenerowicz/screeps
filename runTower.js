@@ -22,7 +22,7 @@ var runTower = {
 	                                    || (structure.structureType === STRUCTURE_SPAWN && structure.hits < structure.hitsMax)}});
 
 	                                    
-	   console.log('Map:',n_t,'Repair Sites:',repair_sites.length);
+	   // console.log('Map:',n_t,'Repair Sites:',repair_sites.length);
 	   
 	    if(tower) {
 	        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
